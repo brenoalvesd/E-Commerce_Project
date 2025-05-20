@@ -10,12 +10,12 @@
 
 [x] Arquitetura do Docker
 
-[] Arquitetura das Entidades
-    [] Geração de ID automática e em Hash 
-    [] `created_at` e `updated_at` em todas
+[x] Arquitetura das Entidades
 
-[] Arquitetura do Banco de Dados
+[x] Arquitetura do Banco de Dados
 
-[] Variáveis Ambiente
+[x] Variáveis Ambiente
 
-[] Banco de Dados
+[x] Popular banco de dados com FakerJs
+
+[x] Feat: Relatório de Vendas
