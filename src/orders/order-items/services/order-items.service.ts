@@ -24,7 +24,7 @@ export class OrderItemsService {
 
   async findByOrder(order_id: string): Promise<OrderItem[]> {
     return this.orderItemRepository.find({
-      where: { order_id },
+      where: { order: { id: order_id } },
       relations: ['product'],
     });
   }

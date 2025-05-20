@@ -1,18 +1,18 @@
 import {
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  OneToMany,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { OrderItem } from '../order-items/entities/order-item.entity';
 
-@Entity()
+@Entity('orders')
 export class Order {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @CreateDateColumn()
@@ -21,10 +21,7 @@ export class Order {
   @Column({ default: 'pending' })
   status: 'pending' | 'paid' | 'cancelled';
 
-  @Column()
-  user_id: string;
-
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.orders)
   @JoinColumn({ name: 'user_id' })
   user: User;
 

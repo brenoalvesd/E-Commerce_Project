@@ -1,9 +1,16 @@
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
 import { Order } from 'src/orders/entities/order.entity';
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
 
-@Entity()
+@Entity('users')
 export class User {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ unique: true })
@@ -12,16 +19,16 @@ export class User {
   @Column()
   telephone: string;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @CreateDateColumn()
   created_at: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updated_at: Date;
 
   @OneToMany(() => Order, (order) => order.user)

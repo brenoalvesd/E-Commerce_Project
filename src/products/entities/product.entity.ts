@@ -1,10 +1,14 @@
-// products/product.entity.ts
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+} from 'typeorm';
 import { OrderItem } from 'src/orders/order-items/entities/order-item.entity';
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
 
-@Entity()
+@Entity('products')
 export class Product {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -20,7 +24,7 @@ export class Product {
   quantityInStock: number;
 
   @OneToMany(() => OrderItem, (item) => item.product)
-  orderItems: OrderItem[];
+  order_items: OrderItem[];
 }
 
 export default Product;

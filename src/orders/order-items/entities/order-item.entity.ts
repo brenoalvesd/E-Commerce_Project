@@ -1,6 +1,6 @@
 import {
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   Column,
   ManyToOne,
   JoinColumn,
@@ -8,25 +8,19 @@ import {
 import { Order } from 'src/orders/entities/order.entity';
 import { Product } from 'src/products/entities/product.entity';
 
-@Entity()
+@Entity('order_items')
 export class OrderItem {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   quantity: number;
 
-  @Column()
-  order_id: string;
-
-  @ManyToOne(() => Order)
+  @ManyToOne(() => Order, (order) => order.items)
   @JoinColumn({ name: 'order_id' })
   order: Order;
 
-  @Column()
-  product_id: string;
-
-  @ManyToOne(() => Product)
+  @ManyToOne(() => Product, (product) => product.order_items)
   @JoinColumn({ name: 'product_id' })
   product: Product;
 }
